@@ -1,0 +1,20 @@
+First Class Objects
+In Python, functions are first class objects that mean that functions in Python can be used or passed as arguments.
+Properties of first class functions:
+A function is an instance of the Object type.
+You can store the function in a variable.
+You can pass the function as a parameter to another function.
+You can return the function from a function.
+You can store them in data structures such as hash tables, lists, …
+
+Decorators-
+As stated above the decorators are used to modify the behaviour of function or class. In Decorators, functions are taken as the argument into another function and then called inside the wrapper function.
+
+
+
+def mydecoratorfunction(some_function): # decorator function
+    def inner_function(): 
+        # write code to extend the behavior of some_function()
+        some_function() # call some_function
+        # write code to extend the behavior of some_function()
+    return inner_function # return a wrapper function
