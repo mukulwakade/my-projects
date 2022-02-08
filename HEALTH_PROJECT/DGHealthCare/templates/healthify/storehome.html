@@ -1,0 +1,85 @@
+{% extends 'basestore.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+    <title>home page</title>
+{% endblock %}
+
+{% block content %}
+{% load cart %}
+{% load custom %}
+<div class="container-fluid mt-3">
+  <div class="row">
+    <!--filter-->
+    <div class="col-lg-3 mx-auto" >
+      <div class="list-group" style="width: 12rem">
+        {% for category in categories %}
+          <a href="/healthify/storehome/?category={{category.id}}" class="list-group-item list-group-item-action btn btn-success">{{category.name}}</a>
+        {% endfor %}        
+      </div>
+    </div>
+    <br>   
+    <!--all products-->
+    <div id="products" class="col-lg-9 mx-auto">
+      <div class="row mx-auto">
+        {% for product in product %}
+        <div class="card mx-auto mb-1" id="{{product.id}}" style="width: 15rem;">
+          <img class="card-img-top" src="{{product.image.url}}" alt="products card images">
+          <div class="card-body">
+            <p class="card-title"><b>{{product.name}}</b></p>
+            <p class="card-text"><b>{{product.price|rupeesymbol}}</b></p>
+            <p class="card-text"><b>{{product.category}}</b></p>                  
+          </div>
+          <div class="card-footer p-0">
+            {% if product|is_in_cart:request.session.cart %}
+            <div class="row no-gutters">              
+              <form action="/healthify/storehome/#{{product.id}}" class="col-2" method="post">
+                {% csrf_token %}
+                <input hidden type="text" name="product" value="{{product.id}}">
+                <input hidden type="text" name="remove" value="True">
+                <input type="submit" value="-" class="btn btn-block btn-secondary">
+              </form>
+              <div class="text-centre col">{{ product|cart_count:request.session.cart }} in Cart</div>
+              <form action="/healthify/storehome/#{{product.id}}" class="col-2" method="post">
+                {% csrf_token %}
+                <input hidden type="text" name="product" value="{{product.id}}">
+                <input type="submit" value="+" class="btn btn-block btn-secondary"></div>
+              </form>
+            </div>
+            {% else %}
+            <form action="/healthify/storehome/#{{product.id}}" method="post" class="btn-block">
+              {% csrf_token %}
+              <input hidden type="text" name="product" value="{{product.id}}">
+              <input type='submit' href="#" class="float-right btn btn-light border form-control" value="Add To Cart">
+            </form>
+            {% endif %}           
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

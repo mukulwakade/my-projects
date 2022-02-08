@@ -1,0 +1,39 @@
+{% extends 'baseadmin.html' %}
+
+{% block title %}
+    <title>show appointments</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="width: 100%;">
+        <table class="table table-hover">
+            <tr>
+                <th>PATIENT ID</th>
+                <th>PATIENT NAME</th>
+                <th>PATIENT GENDER</th>
+                <th>PATIENT CITY</th>
+                <th>PATIENT PREVIOUS VISIT</th>
+                <th>PATIENT PREVIOUS DATA</th>
+                <th>APPOINTMENT DATE</th>
+                <th>APPOINTMENT SLOT</th>
+                <th>PATIENT CONTACT NUMBER</th>
+                <th>DELETE</th>
+            </tr>
+        {% for appo in appointments %}
+            <tr>
+                <td>{{appo.id}}</td>
+                <td>{{appo.name}}</td>
+                <td>{{appo.gender}}</td>
+                <td>{{appo.city}}</td>
+                <td>{{appo.previous_visit}}</td>
+                <td>{{appo.if_before_visited_visit_detail}}</td>
+                <td>{{appo.appointment_date}}</td>
+                <td>{{appo.slot}}</td>
+                <td>{{appo.contact_number}}</td>               
+                <td><a href="{% url 'delete' appo.id %}"><button class="btn btn-danger">Delete</button></a></td>               
+           </tr>
+        {% endfor %}
+        </table>
+    </div>   
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends 'baseadmin.html' %}
+
+{% block title %}
+    <title>show category</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="width: 100%;">
+        <table class="table table-hover">
+            <tr>
+                <th>CATEGORY ID</th>
+                <th>CATEGORY NAME</th>                                             
+                <th>DELETE</th>
+            </tr>
+        {% for cat in category %}
+            <tr>
+                <td>{{cat.id}}</td>
+                <td>{{cat.name}}</td>                                              
+                <td><a href="{% url 'deletecategory' cat.id %}"><button class="btn btn-danger">Delete</button></a></td>               
+           </tr>
+        {% endfor %}
+        </table>
+    </div>   
+{% endblock %}
+

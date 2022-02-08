@@ -1,0 +1,35 @@
+{% extends 'baseadmin.html' %}
+
+{% block title %}
+    <title>show ambulance</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="width: 100%;">
+        <table class="table table-hover">
+            <tr>
+                <th>PATIENT ID</th>
+                <th>PATIENT NAME</th>
+                <th>PATIENT AGE</th>
+                <th>PATIENT GENDER</th>
+                <th>PATIENT CONTACT NUMBER</th>
+                <th>PATIENT LOCATION</th>
+                <th>PATIENT DISEASE</th>                              
+                <th>DELETE</th>
+            </tr>
+        {% for appo in ambulance %}
+            <tr>
+                <td>{{appo.id}}</td>
+                <td>{{appo.patient_name}}</td>
+                <td>{{appo.patient_age}}</td>
+                <td>{{appo.gender}}</td>
+                <td>{{appo.contact_number}}</td>
+                <td>{{appo.location}}</td>
+                <td>{{appo.disease}}</td>                               
+                <td><a href="{% url 'deleteambulance' appo.id %}"><button class="btn btn-danger">Delete</button></a></td>               
+           </tr>
+        {% endfor %}
+        </table>
+    </div>   
+{% endblock %}
+

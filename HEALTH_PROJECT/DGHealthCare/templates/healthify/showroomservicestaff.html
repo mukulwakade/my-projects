@@ -1,0 +1,35 @@
+{% extends 'baseadmin.html' %}
+
+{% block title %}
+    <title>show roomservicestaff</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="width: 100%;">
+        <table class="table table-hover">
+            <tr>
+                <th>ROOM SERVICE STAFF ID</th>
+                <th>ROOM SERVICE STAFF NAME</th>
+                <th>ROOM SERVICE STAFF GENDER</th>
+                <th>ROOM SERVICE STAFF ADDRESS</th>
+                <th>ROOM SERVICE STAFF AGE</th>
+                <th>ROOM SERVICE STAFF AADHAR NUMBER</th>                              
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+        {% for staff in roomservice %}
+            <tr>
+                <td>{{staff.id}}</td>
+                <td>{{staff.name}}</td>
+                <td>{{staff.gender}}</td>
+                <td>{{staff.address}}</td>
+                <td>{{staff.age}}</td>
+                <td>{{staff.adhaar_number}}</td> 
+                <td><a href="{% url 'updateroomservice' staff.id %}"><button class="btn btn-warning">Update</button></a></td>                              
+                <td><a href="{% url 'deleteroomservice' staff.id %}"><button class="btn btn-danger">Delete</button></a></td>               
+           </tr>
+        {% endfor %}
+        </table>
+    </div>   
+{% endblock %}
+

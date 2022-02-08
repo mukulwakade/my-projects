@@ -1,0 +1,34 @@
+{% extends 'basestore.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>checkout</title>
+{% endblock %}
+
+
+{% block content %}
+    <h3 style="text-align: center;">Checkout Form</h3>
+    <div class="container" style="width: 40%; background-color:rgb(79, 184, 79); border-radius: 5px; padding: 30px;">
+        {% crispy form %}
+        <br/>
+        {% if payment %}
+            <form action="{% url 'success' %}" method="POST">
+                {% csrf_token %}
+                <script
+                    src="https://checkout.razorpay.com/v1/checkout.js"
+                    data-key="rzp_test_nf2QitQ9XiFGMm" 
+                    data-amount="{{ payment.amount }}" 
+                    data-currency="{{ payment.currency }}"
+                    data-order_id="{{ payment.id }}"
+                    data-buttontext="Pay with Razorpay"
+                    data-name="Healthify"
+                    data-description="we care for you"
+                    data-image="https://example.com/your_logo.jpg"
+                    data-prefill.name="{{ payment.name }}"
+                    data-prefill.email="you@example.com"
+                    data-theme.color="#F37254"
+                ></script>
+                <input type="hidden" custom="Hidden Element" name="hidden">
+            </form>
+        {% endif %}
+    </div>                
+{% endblock %}

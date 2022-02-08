@@ -1,0 +1,16 @@
+{% extends 'baseadmin.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>add product</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container" style="width: 40%;">
+        <form method="post" class="jumbotron" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value="Add Product" class="btn btn-success">
+        </form>
+    </div>
+{% endblock %}

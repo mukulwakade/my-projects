@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>add doctor</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+        {% csrf_token %}
+<fieldset>
+
+<!-- Form Name -->
+<legend><center><h2><b>Add New Doctor</b></h2></center></legend><br>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label"> Name</label>  
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input  name="name" placeholder="Full Name" class="form-control"  type="text" value="{{mov.name}}">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+  <div class="form-group"> 
+  <label class="col-md-4 control-label">Gender</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="gender" class="form-control selectpicker" value={{mov.gender}}>
+      <option value="">Select your gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option >Others</option>      
+    </select>
+  </div>
+</div>
+</div>
+  
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Address</label>  
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input  name="address" placeholder="Address" class="form-control"  type="text" value="{{mov.address}}">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Age</label> 
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="age" placeholder="Age" class="form-control"  type="number" value={{mov.age}}>
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group"> 
+    <label class="col-md-4 control-label">Qualification</label>
+      <div class="col-md-4 selectContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+      <select name="qualification" class="form-control selectpicker" value="{{mov.qualification}}">
+        <option value="">Select your qualification</option>
+        <option>MBBS</option>
+        <option>MD</option>
+        <option >PHD</option>      
+      </select>
+    </div>
+  </div>
+  </div>
+
+
+<!-- Text input-->
+       
+<div class="form-group">
+  <label class="col-md-4 control-label">Aadhaar No.</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+  <input name="adhaar_number" placeholder="12 digit aadhaar number" class="form-control" type="number" value={{mov.adhaar_number}}>
+    </div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+
+<!-- Success message -->
+<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4"><br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+</div><!-- /.container -->
+{% endblock %}

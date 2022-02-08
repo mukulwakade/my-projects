@@ -1,0 +1,35 @@
+{% extends 'baseadmin.html' %}
+
+{% block title %}
+    <title>show product</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="width: 120%;">
+        <table class="table table-hover">
+            <tr>
+                <th>PRODUCT ID</th>
+                <th>PRODUCT NAME</th>
+                <th>PRODUCT CATEGORY</th>
+                <th>PRODUCT PRICE</th>
+                <th>PRODUCT DESCRIPTION</th>
+                <th>PRODUCT IMAGE</th>                            
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+        {% for pro in products %}
+            <tr>
+                <td>{{pro.id}}</td>
+                <td>{{pro.name}}</td>
+                <td>{{pro.category}}</td>
+                <td>{{pro.price}}</td>
+                <td>{{pro.description}}</td>
+                <td><img src="{{pro.image.url}}" alt="image" width='100' height='100'></td>
+                <td><a href="{% url 'updateproduct' pro.id %}"><button class="btn btn-warning">Update</button></a></td>                               
+                <td><a href="{% url 'deleteproduct' pro.id %}"><button class="btn btn-danger">Delete</button></a></td>               
+           </tr>
+        {% endfor %}
+        </table>
+    </div>   
+{% endblock %}
+

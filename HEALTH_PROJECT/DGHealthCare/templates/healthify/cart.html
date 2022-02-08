@@ -1,0 +1,67 @@
+{% extends 'basestore.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+    <title>home page</title>
+{% endblock %}
+
+{% block content %}
+{% load cart %}
+{% load custom %}
+    <div class="container" style="width: 120%;">
+        <p class="display-4">Your Cart</p>
+        <table class="table table-hover">
+            <tr>
+                <th>SERIAL NUMBER</th>
+                <th>PRODUCT IMAGE</th>
+                <th>PRODUCT NAME</th>
+                <th>PRODUCT CATEGORY</th>
+                <th>PRODUCT PRICE</th>
+                <th>PRODUCT DESCRIPTION</th>
+                <th>PRODUCT QUANTITY</th>                                           
+                <th>PRODUCT TOTAL</th>                                           
+            </tr>
+        {% for cart in cartproducts %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><img style="height: 80px" class="rounded-circle" src="{{ cart.image.url}}"></td>
+                <td>{{cart.name}}</td>
+                <td>{{cart.category}}</td>
+                <td>{{cart.price|rupeesymbol}}</td>
+                <td>{{cart.description}}</td>
+                <td>{{cart|quantity:request.session.cart}}</td>               
+                <td>{{cart|total:request.session.cart}}</td>               
+           </tr>
+        {% endfor %}
+        <tfoot>
+            <tr>
+                <th colspan="1"></th>
+                <th class="text-center" colspan="6">Total</th>
+                <th>{{ cartproducts|grandtotal:request.session.cart }}</th>
+            </tr>
+        </tfoot>
+        </table>
+        <hr>
+        <div class="m-3 p-3">
+            <a href="{% url 'order' %}" class="btn btn-success border rounded col-lg-2 float-right">Check Out</a>
+        </div>
+    </div>   
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
